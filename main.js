@@ -58,10 +58,20 @@ If statement to check the correct answer ✅
 Select p tag with id #answer-result ✅
 Update p tag to display Right or Wrong depending on their answer ✅
 
-Step 6 - Next
-Declare global variable to track the current question ✅ 
-Increment currentQuestion variable when we click the next button
+Step 6
+Create a function to update all the following: 
+Update the score counter if the question was correct. ✅
+Update difficulty level ✅
+Update question number ✅
 
+Step 7 - Next
+Declare global variable to track the current question ✅ 
+Create a function for the next button to:
+increment currentQuestion variable
+Update question and possible answers
+If last question, ask them if they want to play the next round.
+Select the next button
+Add Event listener to it and the function as 2nd parameter.
 
 */
 
@@ -108,21 +118,43 @@ function placeAnswers() {
 }
 
 // Task 5
-let answerBox = document.querySelector('#answerBox');
+let answerBox = document.querySelector("#answerBox");
 
 function checkAnswer(event) {
-  let answerResult = document.querySelector('#answer-result');
-  if (event.target.innerText === triviaData.results[currentQuestion].correct_answer) {
+  let answerResult = document.querySelector("#answer-result");
+  let score = document.querySelector("#score");
+  if (
+    event.target.innerText ===
+    triviaData.results[currentQuestion].correct_answer
+  ) {
     userScore++;
+    score.innerText = userScore;
     answerResult.innerText = "RIGHT ANSWER";
-  }else{
+  } else {
     answerResult.innerText = "WRONG ANSWER";
   }
 }
 
-answerBox.addEventListener('click', checkAnswer);
+answerBox.addEventListener("click", checkAnswer);
 
-/*
+function updateStatus() {
+  let difficulty = document.querySelector("#difficulty");
+  let questionNumber = document.querySelector("#questionNumber");
+  difficulty.innerText = triviaData.results[0].difficulty;
+  questionNumber.innerText = currentQuestion + 1;
+}
+
+q; /*
+
+Step 7 - Next
+Declare global variable to track the current question ✅ 
+Create a function for the next button to:
+increment currentQuestion variable
+Update question and possible answers
+If last question, ask them if they want to play the next round.
+Select the next button
+Add Event listener to it and the function as 2nd parameter.
+
 {
   "response_code": 0,
   "results": [
