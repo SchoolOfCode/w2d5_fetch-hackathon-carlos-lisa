@@ -79,6 +79,7 @@ Stop user from being able to click on a question more than once. ✅
 On question 10 remove the next button ✅
     Remove with CSS ✅
 
+Step 9 - CSS
 */
 
 // Global variables
@@ -87,6 +88,7 @@ let correctAnswer;
 let currentQuestion = 0;
 let userScore = 0;
 let questionAnswered = false;
+let buttonBorder;
 
 async function triviaApi() {
   let response = await fetch(
@@ -129,15 +131,21 @@ let answerBox = document.querySelector("#answerBox");
 function checkAnswer(event) {
   console.log(questionAnswered);
   if (questionAnswered === false) {
+    buttonBorder = event.target;
     let answerResult = document.querySelector("#answer-result");
     let score = document.querySelector("#score");
     questionAnswered = true;
-    if ( event.target.innerText === triviaData.results[currentQuestion].correct_answer) {
+    if (
+      event.target.innerText ===
+      triviaData.results[currentQuestion].correct_answer
+    ) {
       userScore++;
       score.innerText = userScore;
       answerResult.innerText = "RIGHT ANSWER";
+      event.target.classList.toggle("correct");
     } else {
       answerResult.innerText = "WRONG ANSWER";
+      event.target.classList.toggle("wrong");
     }
   }
 }
@@ -158,11 +166,12 @@ let nextQuestion = document.querySelector("#next-question");
 function getNextQuestion() {
   document.querySelector("#answer-result").innerText = "";
   currentQuestion++;
+  buttonBorder.className = "answer";
   if (currentQuestion >= 10) {
     console.log("Do you want to carry on playing");
   } else {
     if (currentQuestion === 9) {
-      document.querySelector("#next-question").classList.toggle('invisible');
+      document.querySelector("#next-question").classList.toggle("invisible");
     }
     questionAnswered = false;
     updateQuestion();

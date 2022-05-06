@@ -1,0 +1,42 @@
+.selected {
+  border: 10px solid green;
+}
+
+#next-question {
+  font-size: 1em;
+  padding: 1em;
+  background-color: ivory;
+}
+
+.invisible {
+  display:none;
+}
+
+body{
+  background-color: lightyellow;
+}
+
+#answerBox {
+  display: flex;
+  justify-content: space-around
+}
+
+.answer {
+  font-size: 1.2em;
+  padding: 1.2em;
+  background-color: coral;
+  margin: 0.4em;
+  border: 3px solid black
+}
+
+.correct {
+  border: 3px solid green
+}
+
+.wrong {
+  border: 3px solid red
+}
+
+.answer:hover{
+  background-color: darksalmon;
+}
