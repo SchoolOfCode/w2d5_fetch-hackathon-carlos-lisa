@@ -37,10 +37,17 @@ Create async function ✅
 Fetch the API with the right endpoint ✅ 
 Store response data in a global variable called triviaData ✅ 
 
-Step 3 - Get the question to appear in the h2 tag
-Declare a function updateQuestion
-Select the h2 tag with id question
-Update h2 innerText with the response object question property.
+Step 3 - Get the question to appear in the h2 tag ✅ 
+Declare a function updateQuestion ✅ 
+Select the h2 tag with id question ✅ 
+Update h2 innerText with the response object question property. ✅ 
+
+Step 4 - Place all of the answers in the buttons
+
+Declare a function
+Select all of the buttons under the same class name
+New array made up of one array of incorrect answers and one text for correct answer, 
+Place all answers in each button - for loop
 */
 
 // Global variables
@@ -54,6 +61,7 @@ async function triviaApi() {
   if (response.status === 200) {
     triviaData = await response.json();
     updateQuestion();
+    placeAnswers();
   } else {
     triviaData = "Fetch failed";
   }
@@ -67,6 +75,18 @@ function updateQuestion() {
   let h2 = document.querySelector("#question");
   console.log(h2);
   h2.innerText = triviaData.results[0].question;
+}
+
+//Task 4
+
+function placeAnswers() {
+  let buttons = document.querySelectorAll(".answer");
+  let answersArray = triviaData.results[0].incorrect_answers;
+  answersArray.push(triviaData.results[0].correct_answer);
+  answersArray.sort();
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].innerText = answersArray[i];
+  }
 }
 
 /*
