@@ -67,11 +67,11 @@ Update question number ✅
 Step 7 - Next
 Declare global variable to track the current question ✅ 
 Create a function for the next button to:
-increment currentQuestion variable
-Update question and possible answers
-If last question, ask them if they want to play the next round.
-Select the next button
-Add Event listener to it and the function as 2nd parameter.
+increment currentQuestion variable ✅
+Update question and possible answers ✅
+If last question, ask them if they want to play the next round. ✅
+Select the next button ✅
+Add Event listener to it and the function as 2nd parameter. ✅
 
 */
 
@@ -144,17 +144,23 @@ function updateStatus() {
   questionNumber.innerText = currentQuestion + 1;
 }
 
-q; /*
+//Step 7
 
-Step 7 - Next
-Declare global variable to track the current question ✅ 
-Create a function for the next button to:
-increment currentQuestion variable
-Update question and possible answers
-If last question, ask them if they want to play the next round.
-Select the next button
-Add Event listener to it and the function as 2nd parameter.
+let nextQuestion = document.querySelector("#next-question");
 
+function getNextQuestion() {
+  currentQuestion++;
+  if (currentQuestion >= 10) {
+    console.log("Do you want to carry on playing");
+  } else {
+    updateQuestion();
+    placeAnswers();
+    updateStatus();
+  }
+}
+
+nextQuestion.addEventListener("click", getNextQuestion);
+/*
 {
   "response_code": 0,
   "results": [
