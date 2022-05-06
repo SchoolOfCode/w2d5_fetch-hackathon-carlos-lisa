@@ -79,7 +79,12 @@ Stop user from being able to click on a question more than once. ✅
 On question 10 remove the next button ✅
     Remove with CSS ✅
 
-Step 9 - CSS
+Step 9 - Fixes
+Move event listener from the div#answerBox to each button with the answer ✅
+Select the buttons with class .answer ✅
+User a for loop to addevent listener to each button ✅
+
+Step 10 - CSS
 */
 
 // Global variables
@@ -126,7 +131,7 @@ function placeAnswers() {
 }
 
 // Task 5
-let answerBox = document.querySelector("#answerBox");
+let answerButtons = document.querySelectorAll(".answer");
 
 function checkAnswer(event) {
   console.log(questionAnswered);
@@ -150,7 +155,9 @@ function checkAnswer(event) {
   }
 }
 
-answerBox.addEventListener("click", checkAnswer);
+for (let i=0; i < answerButtons.length; i++) {
+  answerButtons[i].addEventListener("click", checkAnswer);
+}
 
 function updateStatus() {
   let difficulty = document.querySelector("#difficulty");
