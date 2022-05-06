@@ -29,14 +29,31 @@ Button - display Next to show next question ✅
 P tag to show the score ✅ 
 P tag to show difficulty level ✅ 
 P tag t0 show question/10 - status ✅ 
+
+Step 2
+
+Get the data from the API to manipulate ✅ 
+Create async function ✅ 
+Fetch the API with the right endpoint ✅ 
+Store response data in a global variable called triviaData ✅ 
+
 */
 
+// Global variables
+let triviaData;
+
 async function triviaApi() {
+
   let response = await fetch(
     "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple"
   );
-  let data = await response.json();
-  console.log(data);
+  // check response status
+  if (response.status === 200) {
+    triviaData = await response.json();
+  }else{
+    triviaData = "Fetch failed";
+  }
+
 }
 
 triviaApi();
