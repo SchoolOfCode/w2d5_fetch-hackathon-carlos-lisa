@@ -1,11 +1,11 @@
 /*
 Aim: Test your computer knowledge
 
-Show question in h2 tag. 
+Show question in h2 tag. ✅ 
 Show a score at the bottom, difficulty level
 Show what question you're on, out of 10. 
 
-Create four large buttons and show the multiple choice answers 
+Create four large buttons and show the multiple choice answers ✅ 
 Click on answer button, if right answer - highlight button in green.
 If wrong - the button goes red, show the right answer afterwards with the right button in green
 
@@ -44,14 +44,32 @@ Update h2 innerText with the response object question property. ✅
 
 Step 4 - Place all of the answers in the buttons
 
-Declare a function
-Select all of the buttons under the same class name
-New array made up of one array of incorrect answers and one text for correct answer, 
-Place all answers in each button - for loop
+Declare a function ✅ 
+Select all of the buttons under the same class name ✅ 
+New array made up of one array of incorrect answers and one text for correct answer, ✅ 
+Place all answers in each button - for loop ✅ 
+
+Step 5 - Implement check of right and wrong answer
+Declare global variable to track the user score ✅
+Select the parent of the button with id #answerBox ✅ 
+Create a function that check the selected answer agains the right answer ✅ 
+Add event listener to the parent of the button ✅ 
+If statement to check the correct answer ✅ 
+Select p tag with id #answer-result ✅
+Update p tag to display Right or Wrong depending on their answer ✅
+
+Step 6 - Next
+Declare global variable to track the current question ✅ 
+Increment currentQuestion variable when we click the next button
+
+
 */
 
 // Global variables
 let triviaData;
+let correctAnswer;
+let currentQuestion = 0;
+let userScore = 0;
 
 async function triviaApi() {
   let response = await fetch(
@@ -74,20 +92,35 @@ triviaApi();
 function updateQuestion() {
   let h2 = document.querySelector("#question");
   console.log(h2);
-  h2.innerText = triviaData.results[0].question;
+  h2.innerText = triviaData.results[currentQuestion].question;
 }
 
 //Task 4
 
 function placeAnswers() {
   let buttons = document.querySelectorAll(".answer");
-  let answersArray = triviaData.results[0].incorrect_answers;
-  answersArray.push(triviaData.results[0].correct_answer);
+  let answersArray = triviaData.results[currentQuestion].incorrect_answers;
+  answersArray.push(triviaData.results[currentQuestion].correct_answer);
   answersArray.sort();
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].innerText = answersArray[i];
   }
 }
+
+// Task 5
+let answerBox = document.querySelector('#answerBox');
+
+function checkAnswer(event) {
+  let answerResult = document.querySelector('#answer-result');
+  if (event.target.innerText === triviaData.results[currentQuestion].correct_answer) {
+    userScore++;
+    answerResult.innerText = "RIGHT ANSWER";
+  }else{
+    answerResult.innerText = "WRONG ANSWER";
+  }
+}
+
+answerBox.addEventListener('click', checkAnswer);
 
 /*
 {
