@@ -73,6 +73,12 @@ If last question, ask them if they want to play the next round. ✅
 Select the next button ✅
 Add Event listener to it and the function as 2nd parameter. ✅
 
+Step 8 - Fixes
+Stop user from being able to click on a question more than once. ✅
+    By using a variable to keep track of when they user gives an answer: boolean? ✅
+On question 10 remove the next button ✅
+    Remove with CSS ✅
+
 */
 
 // Global variables
@@ -80,6 +86,7 @@ let triviaData;
 let correctAnswer;
 let currentQuestion = 0;
 let userScore = 0;
+let questionAnswered = false;
 
 async function triviaApi() {
   let response = await fetch(
@@ -101,7 +108,6 @@ triviaApi();
 
 function updateQuestion() {
   let h2 = document.querySelector("#question");
-  console.log(h2);
   h2.innerText = triviaData.results[currentQuestion].question;
 }
 
@@ -121,17 +127,18 @@ function placeAnswers() {
 let answerBox = document.querySelector("#answerBox");
 
 function checkAnswer(event) {
-  let answerResult = document.querySelector("#answer-result");
-  let score = document.querySelector("#score");
-  if (
-    event.target.innerText ===
-    triviaData.results[currentQuestion].correct_answer
-  ) {
-    userScore++;
-    score.innerText = userScore;
-    answerResult.innerText = "RIGHT ANSWER";
-  } else {
-    answerResult.innerText = "WRONG ANSWER";
+  console.log(questionAnswered);
+  if (questionAnswered === false) {
+    let answerResult = document.querySelector("#answer-result");
+    let score = document.querySelector("#score");
+    questionAnswered = true;
+    if ( event.target.innerText === triviaData.results[currentQuestion].correct_answer) {
+      userScore++;
+      score.innerText = userScore;
+      answerResult.innerText = "RIGHT ANSWER";
+    } else {
+      answerResult.innerText = "WRONG ANSWER";
+    }
   }
 }
 
@@ -149,10 +156,15 @@ function updateStatus() {
 let nextQuestion = document.querySelector("#next-question");
 
 function getNextQuestion() {
+  document.querySelector("#answer-result").innerText = "";
   currentQuestion++;
   if (currentQuestion >= 10) {
     console.log("Do you want to carry on playing");
   } else {
+    if (currentQuestion === 9) {
+      document.querySelector("#next-question").classList.toggle('invisible');
+    }
+    questionAnswered = false;
     updateQuestion();
     placeAnswers();
     updateStatus();
