@@ -37,26 +37,37 @@ Create async function ✅
 Fetch the API with the right endpoint ✅ 
 Store response data in a global variable called triviaData ✅ 
 
+Step 3 - Get the question to appear in the h2 tag
+Declare a function updateQuestion
+Select the h2 tag with id question
+Update h2 innerText with the response object question property.
 */
 
 // Global variables
 let triviaData;
 
 async function triviaApi() {
-
   let response = await fetch(
     "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple"
   );
   // check response status
   if (response.status === 200) {
     triviaData = await response.json();
-  }else{
+    updateQuestion();
+  } else {
     triviaData = "Fetch failed";
   }
-
 }
 
 triviaApi();
+
+//Task 3
+
+function updateQuestion() {
+  let h2 = document.querySelector("#question");
+  console.log(h2);
+  h2.innerText = triviaData.results[0].question;
+}
 
 /*
 {
