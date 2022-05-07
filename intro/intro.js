@@ -28,6 +28,10 @@ Create a tool inventory
 Binoculars - to look for fellow School of Code 
 macbook so they can continue programming, and help you on your tech journey
 
+Additional steps
+add media queries - CSS 
+background fixed 
+separate astronaut from the image. 
 
 Step 1
 
