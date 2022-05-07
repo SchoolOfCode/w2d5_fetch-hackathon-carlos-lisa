@@ -85,6 +85,19 @@ Select the buttons with class .answer ✅
 User a for loop to addevent listener to each button ✅
 
 Step 10 - CSS
+
+Go to the next round MVP - intermediate, which is medium, followed by hard
+
+Create function nextRound ✅
+Store all round 1 first scores in an array ✅
+Reset current questions ✅
+Reset user score ✅
+Call the api function to load the next intermediate round. ✅
+Update difficult level ✅
+Update score on the page ✅
+
+Bonus features 
+Tool kit - Macbook, radar system, telescope
 */
 
 // Global variables
@@ -94,16 +107,19 @@ let currentQuestion = 0;
 let userScore = 0;
 let questionAnswered = false;
 let buttonBorder;
+let round = 1;
+let scoreRecord = [];
 
-async function triviaApi() {
+async function triviaApi(difficulty = "easy") {
   let response = await fetch(
-    "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple"
+    `https://opentdb.com/api.php?amount=10&category=18&difficulty=${difficulty}&type=multiple`
   );
   // check response status
   if (response.status === 200) {
     triviaData = await response.json();
     updateQuestion();
     placeAnswers();
+    updateStatus();
   } else {
     triviaData = "Fetch failed";
   }
@@ -134,7 +150,6 @@ function placeAnswers() {
 let answerButtons = document.querySelectorAll(".answer");
 
 function checkAnswer(event) {
-  console.log(questionAnswered);
   if (questionAnswered === false) {
     buttonBorder = event.target;
     let answerResult = document.querySelector("#answer-result");
@@ -155,7 +170,7 @@ function checkAnswer(event) {
   }
 }
 
-for (let i=0; i < answerButtons.length; i++) {
+for (let i = 0; i < answerButtons.length; i++) {
   answerButtons[i].addEventListener("click", checkAnswer);
 }
 
@@ -173,21 +188,41 @@ let nextQuestion = document.querySelector("#next-question");
 function getNextQuestion() {
   document.querySelector("#answer-result").innerText = "";
   currentQuestion++;
-  buttonBorder.className = "answer";
   if (currentQuestion >= 10) {
-    console.log("Do you want to carry on playing");
+    nextRound();
   } else {
-    if (currentQuestion === 9) {
-      document.querySelector("#next-question").classList.toggle("invisible");
-    }
     questionAnswered = false;
     updateQuestion();
     placeAnswers();
-    updateStatus();
   }
+  updateStatus();
 }
 
 nextQuestion.addEventListener("click", getNextQuestion);
+
+let difficultyLevels = ["easy", "medium", "hard"];
+
+function nextRound() {
+  scoreRecord.push({ round: round, score: userScore });
+  round++;
+  currentQuestion = 0;
+  userScore = 0;
+  score.innerText = 0;
+  questionAnswered = false;
+  triviaApi(difficultyLevels[round - 1]);
+}
+
+/*
+
+Create function nextRound
+Store all round 1 first scores in an array
+Reset current questions 
+Reset user score
+Call the api function to load the next intermediate round.
+
+/*
+
+
 /*
 {
   "response_code": 0,
