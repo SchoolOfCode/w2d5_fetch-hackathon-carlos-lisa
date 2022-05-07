@@ -76,9 +76,9 @@ story();
 
 let button = document.querySelector("#enter");
 button.addEventListener("click", function () {
-  let audio = new Audio("audioFiles/key_alert1.mp3");
+  let audio = new Audio("../audioFiles/key_alert1.mp3");
   audio.play();
   setTimeout(() => {
-    window.location.href = "/index.html";
-  }, 2000);
+    window.location.href = "../index.html";
+  }, 1000);
 });

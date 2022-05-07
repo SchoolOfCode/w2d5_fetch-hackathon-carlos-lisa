@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url(images/soc-banner.jpg);
+  background-image: url(../images/soc-banner.jpg);
   background-repeat: no-repeat; 
   color: white;
   height: 100vh;
