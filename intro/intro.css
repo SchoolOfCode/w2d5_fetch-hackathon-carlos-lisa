@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 9;
+  border: 0
+}
+
+body {
+  background-image: url(images/soc-banner.jpg);
+  background-repeat: no-repeat; 
+  color: white;
+  height: 100vh;
+  background-size: cover;
+  background-position:center;
+}
+
+h1 {
+  text-align: center;
+  margin: 0.5em;
+  font-size: 2.7em;
+  margin-top: 0.1em;
+}
+
+#text-box {
+  /* background-color:white; */
+  width: 55%;
+  height: 400px;
+  margin: auto;
+  margin-top: 160px;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+#enter {
+  font-size: 2.5em;
+  position: absolute;
+  right: 100px;
+  bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px silver;
+  padding: 0.2em;
+}
+
+  #enter:hover {
+  background-color: darkturquoise;
+}
