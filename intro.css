@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url(soc-banner.jpg);
+  background-image: url(../images/soc-banner.jpg);
   background-repeat: no-repeat;
   background-size: 100% auto;
   -webkit-background-size: 100% auto;
@@ -20,15 +20,18 @@ h1 {
   margin-top: 0.1em;
 }
 
+h1 {
+  text-align: center;
+  margin: 0.5em;
+  font-size: 2.7em;
+  margin-top: 0.1em;
+}
+
 #text-box {
-  /* background-color:white; */
   width: 55%;
   height: 400px;
   margin: auto;
   margin-top: 160px;
-
-  /* display: flex;
-  justify-content: center; */
 }
 
 p {

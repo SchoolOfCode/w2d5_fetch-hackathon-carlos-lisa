@@ -14,7 +14,13 @@ Step 2
 Button do they want to enter and play, with an audio sound. ✅ 
 Select button. ✅ 
 Add event listener to the button and go to the next round.  ✅ 
-Make it responsive. 
+Make it responsive.
+
+Issues
+
+Height - too high. 
+Two css or put it into one?
+put images and audio in own files?
 
 Step 3
 Gifts if they get through to the next round, 
@@ -22,6 +28,10 @@ Create a tool inventory
 Binoculars - to look for fellow School of Code 
 macbook so they can continue programming, and help you on your tech journey
 
+Additional steps
+add media queries - CSS 
+background fixed 
+separate astronaut from the image. 
 
 Step 1
 
@@ -66,9 +76,9 @@ story();
 
 let button = document.querySelector("#enter");
 button.addEventListener("click", function () {
-  let audio = new Audio("/key_alert1.mp3");
+  let audio = new Audio("../audioFiles/key_alert1.mp3");
   audio.play();
   setTimeout(() => {
-    window.location.href = "/index.html";
-  }, 2000);
+    window.location.href = "quiz/";
+  }, 1000);
 });
