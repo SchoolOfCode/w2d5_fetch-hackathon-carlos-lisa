@@ -20,7 +20,7 @@ Issues
 
 Height - too high. 
 Two css or put it into one?
-put images and audio in own files?
+put images and audio in own files? ✅ 
 
 Step 3
 Gifts if they get through to the next round, 

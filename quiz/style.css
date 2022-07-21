@@ -79,13 +79,28 @@ h1 {
   background-color: darksalmon;
 }
 
-#score-board {
+.display-flex {
   display: flex;
-  flex-direction: column;
+}
+
+#score-board {
+  /* display: flex; */
+  /* flex-direction: column; */
   width: 300px;
   margin: 0 auto;
   text-align: center;
   background-color: rgb(242, 146, 43);
   padding: 0.5em;
+  border-radius: 10px;
+  align-self: center;
+
+}
+
+
+.tech-inventory {
+  width: 150px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: brown;
   border-radius: 10px;
 }

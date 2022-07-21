@@ -109,6 +109,7 @@ let questionAnswered = false;
 let selectedButton;
 let round = 1;
 let scoreRecord = [];
+let techAnnouncement
 
 async function triviaApi(difficulty = "easy") {
   let response = await fetch(
@@ -214,6 +215,12 @@ function nextRound() {
   questionAnswered = false;
   triviaApi(difficultyLevels[round - 1]);
 }
+
+/*Create function to populate tech inventory 
+//to be called with next round fn
+//select the p tag and replace it
+*/
+
 
 /*
 
