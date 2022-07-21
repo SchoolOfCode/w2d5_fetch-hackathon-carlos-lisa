@@ -106,7 +106,7 @@ let correctAnswer;
 let currentQuestion = 0;
 let userScore = 0;
 let questionAnswered = false;
-let buttonBorder;
+let selectedButton;
 let round = 1;
 let scoreRecord = [];
 
@@ -137,9 +137,10 @@ function updateQuestion() {
 //Task 4
 
 function placeAnswers() {
+  correctAnswer = triviaData.results[currentQuestion].correct_answer;
   let buttons = document.querySelectorAll(".answer");
   let answersArray = triviaData.results[currentQuestion].incorrect_answers;
-  answersArray.push(triviaData.results[currentQuestion].correct_answer);
+  answersArray.push(correctAnswer);
   answersArray.sort();
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].innerText = answersArray[i];
@@ -147,25 +148,24 @@ function placeAnswers() {
 }
 
 // Task 5
+//exists everywhere
 let answerButtons = document.querySelectorAll(".answer");
 
 function checkAnswer(event) {
   if (questionAnswered === false) {
-    buttonBorder = event.target;
+    selectedButton = event.target;
     let answerResult = document.querySelector("#answer-result");
     let score = document.querySelector("#score");
     questionAnswered = true;
-    if (
-      event.target.innerText ===
-      triviaData.results[currentQuestion].correct_answer
-    ) {
+    if (selectedButton.innerText === correctAnswer) {
       userScore++;
       score.innerText = userScore;
       answerResult.innerText = "RIGHT ANSWER";
-      event.target.classList.toggle("correct");
+      //classList = all classes applied to the element.
+      selectedButton.classList.toggle("correct");
     } else {
       answerResult.innerText = "WRONG ANSWER";
-      event.target.classList.toggle("wrong");
+      selectedButton.classList.toggle("wrong");
     }
   }
 }
@@ -177,16 +177,17 @@ for (let i = 0; i < answerButtons.length; i++) {
 function updateStatus() {
   let difficulty = document.querySelector("#difficulty");
   let questionNumber = document.querySelector("#questionNumber");
-  difficulty.innerText = triviaData.results[0].difficulty;
+  difficulty.innerText = triviaData.results[currentQuestion].difficulty;
   questionNumber.innerText = currentQuestion + 1;
 }
 
 //Step 7
 
-let nextQuestion = document.querySelector("#next-question");
-
 function getNextQuestion() {
+  //reset the content and remove classes
   document.querySelector("#answer-result").innerText = "";
+  selectedButton.classList.remove("wrong");
+  selectedButton.classList.remove("correct");
   currentQuestion++;
   if (currentQuestion >= 10) {
     nextRound();
@@ -198,6 +199,8 @@ function getNextQuestion() {
   updateStatus();
 }
 
+//select the button
+let nextQuestion = document.querySelector("#next-question");
 nextQuestion.addEventListener("click", getNextQuestion);
 
 let difficultyLevels = ["easy", "medium", "hard"];
