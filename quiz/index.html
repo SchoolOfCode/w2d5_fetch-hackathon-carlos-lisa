@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Advancers</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="https://kit.fontawesome.com/39a8b01339.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/39a8b01339.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <h1><span class="backgroundColor">Tech Advancers</span></h1>
@@ -19,20 +22,42 @@
     </div>
 
     <div class="display-flex">
-    <div id="score-board">
-      <p id="answer-result"></p>
-      <p>Score: <span id="score">0</span></p>
-      <p>Difficulty Level: <span id="difficulty">Easy</span></p>
-      <p><span id="questionNumber">1</span>/10</p>
-      <button id="next-question">Next Question</button>
+      <div id="score-board">
+        <p id="answer-result"></p>
+        <p>Score: <span id="score">0</span></p>
+        <p>Difficulty Level: <span id="difficulty">Easy</span></p>
+        <p><span id="questionNumber">1</span>/10</p>
+        <button id="next-question">Next Question</button>
+      </div>
+
+      <div class="tech-inventory">
+        <h3 class="tech-advice">
+          Tech Inventory<span class="tech-tool-text"
+            >Get 7 answers right in every round to grow your tech tool kit</span
+          >
+        </h3>
+        &nbsp;<i class="fa-solid fa-circle-info"></i>
+        <p id="inventory"></p>
+      </div>
     </div>
 
-    <div class="tech-inventory">
-      <h3 class="tech-advice">Tech Inventory<span class="tech-tool-text">Get 7 answers right in every round to grow your tech tool kit</span></h3>&nbsp;<i class="fa-solid fa-circle-info"></i>
-      <p id="inventory"></p>
-    </div>
+    <!-- <h2>Model</h2> -->
+
+    <!-- Trigger/Open The Modal -->
+    <!-- <button id="myBtn">Open Modal</button> -->
     
-  </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="techAnnouncement">
+          <p>Answer 7 or more questions to pass the round and win tech tools to help you in  your mission. </p><p>A telescope has been awarded to you to help you on your way.</p>
+      </div>
+    
+    </div>
+
     <script src="main.js"></script>
   </body>
 </html>

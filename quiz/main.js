@@ -109,9 +109,9 @@ let questionAnswered = false;
 let selectedButton;
 let round = 1;
 let scoreRecord = [];
-let techAnnouncement
-let inventory = document.querySelector("#inventory") 
-inventory.innerHTML = "🔭 Telescope to see comrades in space"
+let techAnnouncement = document.querySelector("#techAnnouncement");
+let inventory = document.querySelector("#inventory");
+inventory.innerHTML = "🔭 Telescope to see comrades in space";
 
 async function triviaApi(difficulty = "easy") {
   let response = await fetch(
@@ -203,13 +203,19 @@ function getNextQuestion() {
 }
 
 //select the button
+// Create function nextRound
+// Store all round 1 first scores in an array
+// Reset current questions
+// Reset user score
+// Call the api function to load the next intermediate round.
 let nextQuestion = document.querySelector("#next-question");
 nextQuestion.addEventListener("click", getNextQuestion);
 
 let difficultyLevels = ["easy", "medium", "hard"];
 
 function nextRound() {
-  techInventory()
+  announceResults();
+  techInventory();
   scoreRecord.push({ round: round, score: userScore });
   round++;
   currentQuestion = 0;
@@ -220,28 +226,41 @@ function nextRound() {
 }
 
 function techInventory() {
-  if (userScore >=7 && round == 1) {
-    techAnnouncement = "<p>Well done, you have won a laptop to help you with your quest</p>"
-    inventory.innerHTML += "<br>💻 Code functions to automate tasks</br>"
-  }
-  else if (userScore >=7 && round == 2) {
-    techAnnouncement = "<p>Well done, you have coded a 3D spacecraft doughnut to import fellow developers down to help</p>"
+  if (userScore >= 3 && round == 1) {
+    techAnnouncement.innerHTML = `<p>Well done, you got ${userScore} correct, you have won a laptop to help you with your quest</p>`;
+    inventory.innerHTML +=
+      "<p>💻 Code functions to automate tasks and advance civilisation</p>";
+  } else if (userScore >= 3 && round == 2) {
+    techAnnouncement.innerHTML = `<p>🍩 Well done, you got ${userScore} correct, you manage to code a 3D spacecraft doughnut to import fellow developers down to help</p>`;
+    inventory.innerHTML +=
+      "<p>🍩 3D Space doughnut craft to bring down fellow bootcampers to help</p>";
+  } else if (userScore < 3) {
+    techAnnouncement.innerHTML =
+      "More training is needed. You can surf the internet for answers, please try the round again";
   }
 }
 
-/*Create function to populate tech inventory 
-//to be called with next round fn
-//select the p tag and replace it
-*/
+var modal = document.getElementById("myModal");
 
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-/*
+//create a new function to announce results and open the modal
+function announceResults() {
+  modal.style.display = "block";
+}
 
-Create function nextRound
-Store all round 1 first scores in an array
-Reset current questions 
-Reset user score
-Call the api function to load the next intermediate round.
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 /*
 
