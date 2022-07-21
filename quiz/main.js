@@ -224,7 +224,7 @@ function techInventory() {
     techAnnouncement = "<p>Well done, you have won a laptop to help you with your quest</p>"
     inventory.innerHTML += "<br>💻 Code functions to automate tasks</br>"
   }
-  elsif (userScore >=7 && round == 2) {
+  else if (userScore >=7 && round == 2) {
     techAnnouncement = "<p>Well done, you have coded a 3D spacecraft doughnut to import fellow developers down to help</p>"
   }
 }
