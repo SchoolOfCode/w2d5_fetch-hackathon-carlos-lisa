@@ -110,6 +110,8 @@ let selectedButton;
 let round = 1;
 let scoreRecord = [];
 let techAnnouncement
+let inventory = document.querySelector("#inventory") 
+inventory.innerHTML = "🔭 Telescope to see comrades in space"
 
 async function triviaApi(difficulty = "easy") {
   let response = await fetch(
@@ -207,6 +209,7 @@ nextQuestion.addEventListener("click", getNextQuestion);
 let difficultyLevels = ["easy", "medium", "hard"];
 
 function nextRound() {
+  techInventory()
   scoreRecord.push({ round: round, score: userScore });
   round++;
   currentQuestion = 0;
@@ -214,6 +217,16 @@ function nextRound() {
   score.innerText = 0;
   questionAnswered = false;
   triviaApi(difficultyLevels[round - 1]);
+}
+
+function techInventory() {
+  if (userScore >=7 && round == 1) {
+    techAnnouncement = "<p>Well done, you have won a laptop to help you with your quest</p>"
+    inventory.innerHTML += "<br>💻 Code functions to automate tasks</br>"
+  }
+  elsif (userScore >=7 && round == 2) {
+    techAnnouncement = "<p>Well done, you have coded a 3D spacecraft doughnut to import fellow developers down to help</p>"
+  }
 }
 
 /*Create function to populate tech inventory 
