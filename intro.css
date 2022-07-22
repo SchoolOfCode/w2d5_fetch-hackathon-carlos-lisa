@@ -31,11 +31,11 @@ h1 {
   width: 55%;
   height: 400px;
   margin: auto;
-  margin-top: 160px;
+  margin-top: 250px;
 }
 
 p {
-  font-size: 1.5em;
+  font-size: 2rem;
 }
 
 #enter {
