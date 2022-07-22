@@ -111,7 +111,7 @@ let round = 1;
 let scoreRecord = [];
 let techAnnouncement = document.querySelector("#techAnnouncement");
 let inventory = document.querySelector("#inventory");
-let minimumScore = 1
+let minimumScore = 2;
 
 async function triviaApi(difficulty = "easy") {
   let response = await fetch(

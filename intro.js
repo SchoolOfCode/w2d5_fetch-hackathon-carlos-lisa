@@ -61,11 +61,31 @@ let storyLines = [line1, line2, line3, line4, line5, line6, line7, line8];
 //   }
 // }
 
+// function story() {
+//   for (let i = 0; i < storyLines.length; i++) {
+//     setTimeout(function() {
+//       let p = document.createElement("p");
+//     p.innerText = storyLines[i];
+//     textBox.appendChild(p);
+//     }, 1000);
+//   }
+// }
+
 function story() {
-  for (let i = 0; i < storyLines.length; i++) {
-    let p = document.createElement("p");
-    p.innerText = storyLines[i];
-    textBox.appendChild(p);
+  writeLine(0)
+}
+
+function writeLine(lineNumber) {
+  console.log("lineNumber", lineNumber)
+  console.log(storyLines.length)
+  let p = document.createElement("p");
+  p.innerText = storyLines[lineNumber];
+  textBox.appendChild(p);
+  let nextLine = lineNumber + 1
+  if (nextLine < storyLines.length) {
+    setTimeout(function() {
+      writeLine(nextLine)
+    }, 1000)
   }
 }
 

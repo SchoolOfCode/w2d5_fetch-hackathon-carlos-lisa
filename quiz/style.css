@@ -8,6 +8,7 @@
 body{
   background-color: lightyellow;
   background-image: url(/images/tech-advance.jpeg);
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -84,11 +85,13 @@ ul {
 
 .display-flex {
   display: flex;
+  row-gap: 20px;
+  justify-content: flex-start;
 }
 
 #score-board {
   width: 300px;
-  margin: 0 auto;
+  margin: 10px 75px;
   text-align: center;
   background-color: rgb(242, 146, 43);
   padding: 0.5em;
@@ -98,7 +101,7 @@ ul {
 
 .tech-inventory {
   width: 250px;
-  margin: 0 auto;
+  margin: 10px 75px;
   text-align: center;
   background-color: brown;
   border-radius: 10px;
