@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+
+let successText = document.querySelector("#text")
+
+successText = `Congratulations on assisting others with your tech knowledge.
+            You helped to rebuild planet Earth.
+            Your work influenced and helped others in developing their skills.
+            You saved thousands of lives from the darkness of being without technology.
+            You deserve a break. Relax before your next tech adventure.`
+var i = 0;
+let speed = 50; /* The speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+  if (i < successText.length) {
+    document.getElementById("text").innerHTML += successText.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+</script>
+
+<body onload=typeWriter()>
+  <h1>Tech Avengers - Success</h1>
+  <div id="text-box">
+  <p id="text"></p>
+</div>
+  <script src="index.js"></script>
+ </body>
+</body>
+</html>
+</body>
+</html>
+

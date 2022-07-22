@@ -111,7 +111,7 @@ let round = 1;
 let scoreRecord = [];
 let techAnnouncement = document.querySelector("#techAnnouncement");
 let inventory = document.querySelector("#inventory");
-inventory.innerHTML = "🔭 Telescope to see comrades in space";
+let minimumScore = 1
 
 async function triviaApi(difficulty = "easy") {
   let response = await fetch(
@@ -192,6 +192,7 @@ function getNextQuestion() {
   selectedButton.classList.remove("wrong");
   selectedButton.classList.remove("correct");
   currentQuestion++;
+
   if (currentQuestion >= 10) {
     nextRound();
   } else {
@@ -217,26 +218,41 @@ function nextRound() {
   announceResults();
   techInventory();
   scoreRecord.push({ round: round, score: userScore });
-  round++;
+  if (userScore >= minimumScore) {
+    round++;
+  }
+  triviaApi(difficultyLevels[round - 1]);
   currentQuestion = 0;
   userScore = 0;
   score.innerText = 0;
   questionAnswered = false;
-  triviaApi(difficultyLevels[round - 1]);
 }
 
 function techInventory() {
-  if (userScore >= 3 && round == 1) {
-    techAnnouncement.innerHTML = `<p>Well done, you got ${userScore} correct, you have won a laptop to help you with your quest</p>`;
-    inventory.innerHTML +=
-      "<p>💻 Code functions to automate tasks and advance civilisation</p>";
-  } else if (userScore >= 3 && round == 2) {
+  if (userScore >= minimumScore && round === 1) {
+    techAnnouncement.innerHTML = `<p>Well done, you got ${userScore} correct, you have won a laptop to help you with your quest. You have advanced to the next round: ${difficultyLevels[round]} level</p>`;
+    let li = document.createElement("li");
+    const textnode = document.createTextNode(
+      "💻 Code functions to automate tasks and advance civilisation"
+    );
+    li.appendChild(textnode);
+    inventory.appendChild(li);
+  } else if (userScore >= minimumScore && round === 2) {
     techAnnouncement.innerHTML = `<p>🍩 Well done, you got ${userScore} correct, you manage to code a 3D spacecraft doughnut to import fellow developers down to help</p>`;
-    inventory.innerHTML +=
-      "<p>🍩 3D Space doughnut craft to bring down fellow bootcampers to help</p>";
-  } else if (userScore < 3) {
+    let li = document.createElement("li");
+    const textnode = document.createTextNode(
+      "🍩 3D Space doughnut craft to bring down fellow bootcampers to help"
+    );
+    li.appendChild(textnode);
+    inventory.appendChild(li);
+  } else if (userScore >= minimumScore && round === 3) {
+    techAnnouncement.innerHTML = `<p> Well done, you got ${userScore} correct, you made it through</p>`;
+    setTimeout(function () {
+      window.location.href = "../success";
+    }, 5000);
+  } else if (userScore < minimumScore) {
     techAnnouncement.innerHTML =
-      "More training is needed. You can surf the internet for answers, please try the round again";
+      "Knowledge is not accumulated in years, but decades and centuries. You can surf the internet for answers, try this round again; freel free to use an internet search engine";
   }
 }
 
