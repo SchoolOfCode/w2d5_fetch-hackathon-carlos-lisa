@@ -51,3 +51,9 @@ p {
   #enter:hover {
   background-color: darkturquoise;
 }
+
+@media screen and (max-width: 600px) {
+  body {
+    background-image: url(../images/soc-banner.jpg);
+  } 
+}
